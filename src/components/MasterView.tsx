@@ -77,13 +77,6 @@ function MasterView() {
 
     useEffect(() => {
         getMediaStream();
-        // return () => {
-        //     if (stream) {
-        //         stream.getTracks().forEach((track) => {
-        //             track.stop();
-        //         });
-        //     }
-        // };
     }, [])
 
 
