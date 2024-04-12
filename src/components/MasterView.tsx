@@ -1,6 +1,6 @@
 // import Webcam from "react-webcam";
 import MessageInput from "./MessageInput";
-import { useEffect, useRef, useState } from "react";
+import { MutableRefObject, useEffect, useRef } from "react";
 import useSocket from "../services/socket";
 import usePeer from "../services/peer";
 import Peer, { MediaConnection } from "peerjs";
@@ -49,9 +49,8 @@ function MasterView() {
 
     const peer = usePeer({ onOpen: onOpen, onCall: onCall, onDisconnected: onPDisconnect });
     const socket = useSocket(peer, { onConnected: onConnected, onMatched: onMatched, onDisconnect: onDisconnected, onError: onError, onWaiting: onWait });
-    const [stream, setStream] = useState<MediaStream>();
-    const videoRef = useRef<MediaStream>();
-    const inComingVdoRef = useRef<MediaStream>();
+    const videoRef: MutableRefObject<HTMLVideoElement | null> = useRef(null);
+    const inComingVdoRef: MutableRefObject<HTMLVideoElement | null> = useRef(null)
 
 
     const makeCall = (peerId: string) => {
@@ -78,24 +77,24 @@ function MasterView() {
 
     useEffect(() => {
         getMediaStream();
-        return () => {
-            if (stream) {
-                stream.getTracks().forEach((track) => {
-                    track.stop();
-                });
-            }
-        };
+        // return () => {
+        //     if (stream) {
+        //         stream.getTracks().forEach((track) => {
+        //             track.stop();
+        //         });
+        //     }
+        // };
     }, [])
 
 
     const getMediaStream = async () => {
         try {
-            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-            console.log(stream)
-            setStream(stream);
-            if (videoRef.current) {
-                videoRef.current.srcObject = stream;
-            }
+            navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
+                console.log(stream)
+                if (videoRef.current) {
+                    videoRef.current.srcObject = stream;
+                }
+            });
         } catch (error) {
             console.error('Error accessing media devices:', error);
         }
