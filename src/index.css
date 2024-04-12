@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.master-size {
+  height: 92vh;
+  width: 100vw;
+}
+
+.sizeH90{
+  height: 90%;
+}
+
+.sizeH10 {
+  height: 10%;  
+}
