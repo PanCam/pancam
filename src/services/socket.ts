@@ -15,7 +15,7 @@ const useSocket = (peer: Peer | null, data: Args) => {
     const [socket, setSocket] = useState<Socket | null>(null);
     useEffect(() => {
         const initSocket = () => {
-            const newSocket: Socket = io('gateway.pancam.live');
+            const newSocket: Socket = io('ws://gateway.pancam.live');
             newSocket.on('connected', data.onConnected);
             newSocket.on('matched', (d: IMatchedData) => { data.onMatched(d, peer) });
             newSocket.on('disconnect', data.onDisconnect);
