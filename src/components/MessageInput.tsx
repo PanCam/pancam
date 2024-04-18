@@ -3,7 +3,7 @@ interface Args {
 }
 export default function MessageInput(data: Args) {
     return (
-        <div className="flex w-full sizeH10 pb-3">
+        <div className="mobileInput flex w-full sizeH10 pb-3">
             <div onClick={data.onPressed} className="h-full mr-2 my-2 border-gray-400 border  flex justify-center items-center px-5 ">
                 <span>Stop</span>
             </div>

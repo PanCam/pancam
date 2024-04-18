@@ -96,14 +96,17 @@ function MasterView() {
     return (
 
         <div className="flex master-size p-2">
-            <div className="bg-black w-2/6 flex-col">
-                <div className="h-2/4">
-                    <video ref={inComingVdoRef} autoPlay playsInline />
+            <div className="size30W flex-col mobileBothView">
+
+                <div className="mobileSize h-2/4 bg-gray-200 bgImg">
+                    <video className="" ref={inComingVdoRef} autoPlay playsInline />
                 </div>
-                <video ref={videoRef} autoPlay playsInline muted />
+
+                <video className="h-2/4 w-full myMobileView" ref={videoRef} autoPlay playsInline muted />
             </div>
-            <div className="w-2/3  px-2">
-                <div className="h-5/6 sizeH90 border-2">
+            <div className="w-2/3  px-2 mobileTextView">
+                <div className="flex h-5/6 sizeH90 border-2 p-4 ">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Explicabo fugiat minima, natus nemo repellendus perferendis reprehenderit dicta saepe consectetur maxime?
 
                 </div>
                 <MessageInput onPressed={() => {
